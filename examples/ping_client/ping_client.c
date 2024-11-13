@@ -10,10 +10,7 @@
 
 /* Buffer */
 #define ETHERNET_BUF_MAX_SIZE (1024 * 2)
-#define SOCKET_DHCP 1
 #define SOCKET_PING 2
-#define ETHERNET_BUF_MAX_SIZE (1024 * 2)
-#define DHCP_RETRY_COUNT 5 // DHCP retry times
 
 wiz_NetInfo net_info = {
     .mac = {0x00, 0x08, 0xdc, 0x16, 0xed, 0x2e}, // Define MAC variables
@@ -22,24 +19,12 @@ wiz_NetInfo net_info = {
     .gw = {192, 168, 11, 1},                      // Define gateway variables
     .dns = {168, 126, 63, 1},                         // Define DNS  variables
     .dhcp = NETINFO_STATIC};                       // Define the DNCP mode
+
 static uint8_t ethernet_buf[ETHERNET_BUF_MAX_SIZE] = {
     0,
 };
 static uint8_t remote_ip[4] = {192, 168, 11, 2}; // The IP to be ping
-static uint8_t dhcp_get_ip_flag = 0;            // Define the DHCP acquisition flag
 
-/**
- * @brief   Timer callback processing function, used for dhcp timing processing
- * @param   repeating :Timer structure
- * @return  bool
- */
-bool repeating_timer_callback(struct repeating_timer *t);
-
-/**
- * @brief   Initialization of chip network information
- * @param   conf_info :Static configuration information
- * @return  none
- */
 static void set_clock_khz(void);
 
 int main()
@@ -53,7 +38,6 @@ int main()
     wizchip_initialize(); // spi initialization
     wizchip_check();
 
-
     network_initialize(net_info);
 
     print_network_information(net_info); // Read back the configuration information and print it
@@ -62,12 +46,6 @@ int main()
     {
         do_ping(SOCKET_PING, remote_ip); // Ping the target IP
     }
-}
-
-bool repeating_timer_callback(struct repeating_timer *t)
-{
-    // DHCP_time_handler(); // DHCP 1s Tick Timer handler
-    return true;
 }
 
 static void set_clock_khz(void)
