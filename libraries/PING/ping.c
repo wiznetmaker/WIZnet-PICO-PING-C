@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "socket.h"
-// #include "w5100s.h"
 #include "ping.h"
 #include "pico/time.h"
 
@@ -248,45 +247,3 @@ void do_ping(uint8_t sn, uint8_t *ip)
     else if (req == 4)
         close(sn);
 }
-
-/**
- * socket-less ping
- * remote_ip:  ping ip address
- * ping_count: ping times, if its 0,always request to the max :65535 times.
- */
-// void SLping(uint8_t *remote_ip, uint16_t ping_count)
-// {
-//     uint16_t i;
-//     static uint16_t succ_count = 0;
-//     setSLRTR(5000); // 5000 * 100us = 500ms
-//     setSLRCR(2);
-//     setSLPIPR(remote_ip);
-//     setSLIMR(0x05);
-//     if (ping_count == 0)
-//         ping_count = 65535;
-//     for (i = 0; i < ping_count; i++)
-//     {
-//         printf("Ping the %d.%d.%d.%d \r\n", remote_ip[0], remote_ip[1], remote_ip[2], remote_ip[3]);
-//         setPINGSEQR(RandomSeqNum);
-//         setPINGIDR(RandomID);
-//         setSLCR(0X01);  // ping
-//         sleep_ms(2000); // wait
-//         switch (getSLIR() & 0x07)
-//         {
-//         case PING_INT:
-//             printf("Reply from %d.%d.%d.%d : ID: %x SeqNum: %x.\r\n", remote_ip[0], remote_ip[1], remote_ip[2], remote_ip[3], getPINGIDR(), getPINGSEQR());
-//             succ_count++;
-//             break;
-//         case TIMEOUT_INT:
-//             printf("Request timeout\r\n");
-//         default:
-//             break;
-//         }
-//         RandomID++;
-//         RandomSeqNum++;
-//     }
-
-//     printf("Ping request: %d, Succ: %d, Fail: %d.\r\n", ping_count, succ_count, (ping_count - succ_count));
-//     while (1)
-//         ;
-// }
