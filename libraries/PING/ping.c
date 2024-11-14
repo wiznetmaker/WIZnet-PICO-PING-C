@@ -200,7 +200,7 @@ uint8_t ping_reply(uint8_t s, uint8_t *addr, uint16_t rlen)
             printf("tmp_checksum = %x\r\n", tmp_checksum);
         else
         {
-            printf(" Reply from %d.%d.%d.%d.%d: ID=%x bytes=%d \r\n",
+            printf(" Reply from %d.%d.%d.%d: ID=%x bytes=%d \r\n",
                    (addr[0]), (addr[1]), (addr[2]), (addr[3]), htons(PingReply.ID), (rlen + 6));
             ping_reply_received = 1; /*When exiting the ping reply cycle, set the ping reply flag to 1*/
         }
