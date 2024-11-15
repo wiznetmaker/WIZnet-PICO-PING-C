@@ -137,4 +137,23 @@ static uint8_t remote_ip[4] = {192, 168, 11, 230};    // The IP to be ping
 
 3. Connect to the serial COM port of Raspberry Pi Pico, W5100S-EVB-Pico, W5500-EVB-Pico, W55RP20-EVB-Pico, W5100S-EVB-Pico2 or W5500-EVB-Pico2 with Tera Term.
 
+![][link-connect_to_serial_com_port]
+
+
 4. Reset your board.
+
+5. If the ping_client example works correctly on Raspberry Pi Pico, W5100S-EVB-Pico, W5500-EVB-Pico, W55RP20-EVB-Pico, W5100S-EVB-Pico2, or W5500-EVB-Pico2, you will be able to check the network information of the respective board and see the ping success message.
+
+![][link-connect_to_ping_client]
+
+6. If there is a problem with the network or the connection is not established, an error message such as timeout will be displayed.
+
+![][link-time_out_ping]
+
+<!--
+Link
+-->
+
+[link-connect_to_serial_com_port]: https://github.com/WIZnet-ioNIC/WIZnet-PICO-PING-C/blob/main/static/images/loopback/connect_to_serial_com_port.png
+[link-connect_to_ping_client]: https://github.com/wiznetmaker/WIZnet-PICO-PING-C/blob/main/static/images/ping_client/connect_to_ping_client.png
+[link-time_out_ping]: https://github.com/wiznetmaker/WIZnet-PICO-PING-C/blob/main/static/images/ping_client/time_out_ping.png
